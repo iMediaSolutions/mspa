@@ -1,0 +1,86 @@
+{"controllers": {
+  "default" : {
+    "header": {
+      "containers" : {
+        "container-1" : ["header"]
+      },
+      "modules" : {
+        "m-test-1" : {"parentID" : "container-1", "template" : "test", "model" : "TestModel"},
+        "m-test-2" : {"parentID" : "container-1", "template" : "test"}
+      }
+    },
+    "footer" :{
+      "containers" : {
+        "container-6" : ["footer"]
+      },
+      "modules" : {
+        "m-test-1" : {"parentID" : "container-6", "template" : "test", "model" : "TestModel"},
+        "m-test-2" : {"parentID" : "container-6", "template" : "test"}
+      }
+    },
+    "views" : {
+      "default" : {
+        "containers" : {
+          "container-2" : ["container"],
+          "container-3" : ["container"],
+          "container-4" : ["container"],
+          "container-5" : ["container"]
+        },
+        "modules" : {
+          "m-test-3" : {"parentID" : "container-2", "template" : "heavytest", "model" : "TestModel"},
+          "m-test-6" : {"parentID" : "container-3", "template" : "heavytest"}
+        }
+      },
+      "default2" : {
+        "containers" : {
+          "container-2" : ["container","l-one-column"],
+          "container-3" : ["container","l-one-column"]
+        },
+        "modules" : {
+          "m-test-9" : {"parentID" : "container-2", "template" : "test"},
+          "m-test-10" : {"parentID" : "container-3", "template" : "test"}
+        }
+      }
+    }
+  },
+  "dashboard" : {
+    "header": {
+      "containers" : {
+        "container-1" : ["header"]
+      },
+      "modules" : {
+        "m-test-1" : {"parentID" : "container-1", "template" : "test", "model" : "TestModel"}
+      }
+    },
+    "footer" :{
+      "containers" : {
+        "container-6" : ["footer"]
+      },
+      "modules" : {
+        "m-test-2" : {"parentID" : "container-6", "template" : "test"}
+      }
+    },
+    "views" : {
+      "index" : {
+        "containers" : {
+          "container-2" : ["container"],
+          "container-3" : ["container"],
+          "container-4" : ["container"],
+          "container-5" : ["container"]
+        },
+        "modules" : {
+          "m-test-6" : {"parentID" : "container-3", "template" : "heavytest"}
+        }
+      },
+      "other" : {
+        "containers" : {
+          "container-2" : ["container","l-one-column"],
+          "container-3" : ["container","l-one-column"]
+        },
+        "modules" : {
+          "m-test-10" : {"parentID" : "container-3", "template" : "test"}
+        }
+      }
+    }
+  }
+}}
