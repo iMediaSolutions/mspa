@@ -6,10 +6,20 @@
           "container-1" : ["container","l-one-column.html"],
           "container-2" : ["container","l-one-column.html"],
           "container-3" : ["container","l-one-column.html"]
+          "container-4" : ["container","l-one-column.html"],
+          "container-5" : ["container","l-one-column.html"],
+          "container-6" : ["container","l-one-column.html"]
+
         },
         "modules" : {
           "m-test-1" : {"parentID" : "container-1", "template" : "test.html", "model" : "TestModel"},
           "m-test-2" : {"parentID" : "container-1", "template" : "test.html"}
+          "m-test-3" : {"parentID" : "container-1", "template" : "test.html", "model" : "TestModel"},
+          "m-test-4" : {"parentID" : "container-1", "template" : "test.html", "model" : "TestModel"},
+          "m-test-5" : {"parentID" : "container-1", "template" : "test.html", "model" : "TestModel"},
+          "m-test-6" : {"parentID" : "container-1", "template" : "test.html"}
+          "m-test-7" : {"parentID" : "container-1", "template" : "test.html"}
+          "m-test-8" : {"parentID" : "container-1", "template" : "test.html"}
         }
       },
       "default2" : {
