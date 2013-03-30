@@ -11,8 +11,8 @@ require.config
     backbone: '../vendors/backbone'
     route: 'route'
     uri: '../vendors/URIjs'
-    controllers: '../controllers/'
-    models: '../models/'
-    views: '../views/'
+    controllers: '../controllers'
+    models: '../models'
+    views: '../views'
 require ['route'], (Router) ->
   console.log Router
