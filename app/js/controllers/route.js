@@ -1,4 +1,4 @@
-require(['backbone'], function(Backbone) {
+require(['backbone', 'uri/URI'], function(Backbone, URI) {
   return $.getJSON('config.json', function(data) {
     var AppsRouter, app_router;
 
@@ -11,9 +11,10 @@ require(['backbone'], function(Backbone) {
     });
     app_router = new AppsRouter;
     app_router.on('route:route', function(route, action, actions) {
-      var containers, modules;
+      var containers, modules, uri;
 
       containers = data.controllers[route].views[action].containers;
+      uri = new URI.parseQuery(actions);
       $.each(containers, function(id, container) {
         $(document).on(container[0], function() {
           $(this).unbind(container[0], arguments.callee);
@@ -44,7 +45,15 @@ require(['backbone'], function(Backbone) {
             html = $(html);
             html.attr('id', id);
             $('#' + id + '-pre').replaceWith(html);
-            return $(document).trigger(id);
+            $(document).trigger(id);
+            if (module.model !== void 0) {
+              return requirejs(['models/' + module.model], function(Model) {
+                var dataModel;
+
+                dataModel = new Model();
+                return dataModel.display(id, module.dataSource, module.title, uri);
+              });
+            }
           });
         });
       });
@@ -83,7 +92,15 @@ require(['backbone'], function(Backbone) {
             html = $(html);
             html.attr('id', id);
             $('#' + id + '-pre').replaceWith(html);
-            return $(document).trigger(id);
+            $(document).trigger(id);
+            if (module.model !== void 0) {
+              return requirejs(['models/' + module.model], function(Model) {
+                var dataModel;
+
+                dataModel = new Model();
+                return dataModel.display(id, module.dataSource, module.title, module.actions);
+              });
+            }
           });
         });
       });
@@ -111,7 +128,6 @@ require(['backbone'], function(Backbone) {
       });
       modules = data.controllers["default"].views["default"].modules;
       return $.each(modules, function(id, module) {
-        console.log(module);
         return $(document).on(module.parentID, function() {
           $(this).unbind(module.parentID, arguments.callee);
           if ($('#' + id).length > 0) {
@@ -123,7 +139,15 @@ require(['backbone'], function(Backbone) {
             html = $(html);
             html.attr('id', id);
             $('#' + id + '-pre').replaceWith(html);
-            return $(document).trigger(id);
+            $(document).trigger(id);
+            if (module.model !== void 0) {
+              return requirejs(['models/' + module.model], function(Model) {
+                var dataModel;
+
+                dataModel = new Model();
+                return dataModel.display(id, module.dataSource, module.title, module.actions);
+              });
+            }
           });
         });
       });
