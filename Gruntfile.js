@@ -60,7 +60,7 @@ module.exports = function(grunt) {
             expand: true,
             cwd: 'haml/',
             src: ['*.haml'],
-            dest: 'app/',
+            dest: 'app/templates',
             ext: '.html',
         },
         options: {
