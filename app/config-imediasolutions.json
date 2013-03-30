@@ -63,13 +63,16 @@
     "views" : {
       "index" : {
         "containers" : {
+          "container-2-1" : ["container-2", "", "bottom"],
           "container-2" : ["container"],
           "container-3" : ["container"],
           "container-4" : ["container"],
           "container-5" : ["container"]
         },
         "modules" : {
-          "m-test-6" : {"parentID" : "container-3", "template" : "heavytest"}
+          "m-test-6" : {"parentID" : "container-3", "template" : "heavytest"},
+          "m-test-top" : {"parentID" : "container-2", "template" : "heavytest", "position" : "top"},
+          "m-test-in" : {"parentID": "container-2-1", "template" : "test"}
         }
       },
       "other" : {
