@@ -4,14 +4,7 @@
   "description": "Grunt Template",
   "main": "Gruntfile.js",
   "dependencies": {
-    "grunt": "~0.4.0",
-    "backbone": "~0.9.10",
-    "underscore": "~1.4.4",
-    "jquery": "~1.9.1",
-    "todomvc-common": "~0.1.2",
-    "backbone.localStorage": "~1.1.0",
-    "requirejs": "~2.1.5",
-    "requirejs-text": "~2.0.5"
+    "grunt": "~0.4.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.2.0",

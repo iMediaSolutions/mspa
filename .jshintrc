@@ -1,0 +1,25 @@
+{
+  "shadow": true,
+  "browser": true,
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "undef": true,
+  "boss": true,
+  "eqnull": true,
+  "node": true,
+  "es5": true,
+  "undef": true,
+  "jquery": true,
+  "globals": {
+    "JSHINT": true,
+    "define": true,
+    "$": true,
+    "requirejs": true,
+    "Backbone": true
+  }
+}
