@@ -1,4 +1,4 @@
-require ['backbone'], (Backbone) ->
+require ['backbone', 'uri/URI'], (Backbone, URI) ->
   $.getJSON 'config.json', (data) ->
     AppsRouter = Backbone.Router.extend
       routes:
@@ -9,6 +9,7 @@ require ['backbone'], (Backbone) ->
 
     app_router.on 'route:route', (route, action, actions) ->
       containers = data.controllers[route].views[action].containers
+      uri = new URI.parseQuery(actions)
       $.each containers, (id, container) ->
         $(document).on container[0], ()->
           $(this).unbind container[0], arguments.callee
@@ -36,6 +37,10 @@ require ['backbone'], (Backbone) ->
             html.attr('id', id)
             $('#' + id + '-pre').replaceWith(html)
             $(document).trigger id
+            if module.model != undefined
+              requirejs ['models/' + module.model], (Model) -> 
+                dataModel = new Model()
+                dataModel.display(id, module.dataSource, module.title, uri)
 
     app_router.on 'route:easyRoute', (route, action) ->
       containers = data.controllers[route].views[action].containers
@@ -66,6 +71,10 @@ require ['backbone'], (Backbone) ->
             html.attr('id', id)
             $('#' + id + '-pre').replaceWith(html)
             $(document).trigger id
+            if module.model != undefined
+              requirejs ['models/' + module.model], (Model) -> 
+                dataModel = new Model()
+                dataModel.display(id, module.dataSource, module.title, module.actions)
 
     app_router.on 'route:defaultRoute', (action) ->
       containers = data.controllers.default.views.default.containers
@@ -84,7 +93,6 @@ require ['backbone'], (Backbone) ->
         $(document).trigger 'container'
       modules = data.controllers.default.views.default.modules
       $.each modules, (id, module) ->
-        console.log module
         $(document).on module.parentID, () ->
           $(this).unbind module.parentID, arguments.callee
           if $('#' + id).length > 0
@@ -96,4 +104,8 @@ require ['backbone'], (Backbone) ->
             html.attr('id', id)
             $('#' + id + '-pre').replaceWith(html)
             $(document).trigger id
+            if module.model != undefined
+              requirejs ['models/' + module.model], (Model) -> 
+                dataModel = new Model()
+                dataModel.display(id, module.dataSource, module.title, module.actions)
     Backbone.history.start()

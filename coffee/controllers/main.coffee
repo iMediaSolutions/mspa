@@ -10,5 +10,9 @@ require.config
     underscore: '/js/vendors/underscore'
     backbone: '/js/vendors/backbone'
     route: '/js/controllers/route'
+    uri: '/js/vendors/URIjs'
+    controllers: '/js/controllers/'
+    models: '/js/models/'
+    views: '/js/views/'
 require ['route'], (Router) ->
   console.log Router
