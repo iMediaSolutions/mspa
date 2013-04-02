@@ -8,8 +8,8 @@
           "container-3" : ["container","l-one-column.html"]
         },
         "modules" : {
-          "m-test-1" : {"parentID" : "container-1", "template" : "test.html"},
-          "m-test-2" : {"parentID" : "container-2", "template" : "test.html"}
+          "m-test-1" : {"parentID" : "container-1", "template" : "test.html", "model" : "TestModel"},
+          "m-test-2" : {"parentID" : "container-1", "template" : "test.html"}
         }
       },
       "default2" : {
@@ -20,7 +20,7 @@
         },
         "modules" : {
           "m-test-1" : {"parentID" : "container-1", "template" : "test.html"},
-          "m-test-2" : {"parentID" : "container-3", "template" : "test.html"}
+          "m-test-2" : {"parentID" : "container-2", "template" : "test.html"}
         }
       }
     }
