@@ -9,13 +9,13 @@
     }
   },
   paths: {
-    underscore: 'js/vendors/underscore',
-    backbone: 'js/vendors/backbone',
-    route: 'js/controllers/route',
-    uri: 'js/vendors/URIjs',
-    controllers: 'js/controllers/',
-    models: 'js/models/',
-    views: 'js/views/'
+    underscore: '../vendors/underscore',
+    backbone: '../vendors/backbone',
+    route: 'route',
+    uri: '../vendors/URIjs',
+    controllers: '../controllers/',
+    models: '../models/',
+    views: '../views/'
   }
 });
 
