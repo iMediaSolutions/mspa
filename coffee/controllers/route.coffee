@@ -17,52 +17,55 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
       $('#header').html('')
       $('#footer').html('')
       $('#sidebar').html('')
-      modules = data.controllers[route].header.modules
-      if modules != undefined
-        $.each modules, (id, module) ->
-          $(document).on module.parentID, () ->
-            $(this).unbind module.parentID, arguments.callee
-            if $('#' + id).length > 0
-              $('#' + id).replaceWith('<div id="' + id + '-pre"></div>')
-            else
-              if module.position == 'top'
-                $('#' + module.parentID).prepend('<div id="' + id + '-pre"></div>')
+      try
+        modules = data.controllers[route].header.modules
+        if modules != undefined
+          $.each modules, (id, module) ->
+            $(document).on module.parentID, () ->
+              $(this).unbind module.parentID, arguments.callee
+              if $('#' + id).length > 0
+                $('#' + id).replaceWith('<div id="' + id + '-pre"></div>')
               else
-                $('#' + module.parentID).append('<div id="' + id + '-pre"></div>')
-            $.get 'templates/' + module.template + '.html', (html) ->
-              html = $(html)
-              html.attr('id', id)
-              $('#' + id + '-pre').replaceWith(html)
-              $(document).trigger id
-              if module.model != undefined
-                requirejs ['models/' + module.model], (Model) -> 
-                  dataModel = new Model()
-                  dataModel.display(id, module.dataSource, module.title, uri)
-
-        containers = data.controllers[route].header.containers
-        $.each containers, (id, container) ->
-          $(document).on container[0], ()->
-            $(this).unbind container[0], arguments.callee
-            if $('#' + id).length > 0
-              $('#' + id).replaceWith('<div id="' + id + '-pre"></div>')
-            else
-              if (container[2] == 'top')
-                $('#' + container[0]).prepend('<div id="' + id + '-pre"></div>')
-              else
-                $('#' + container[0]).append('<div id="' + id + '-pre"></div>')
-            if container[1] != undefined && container[1] != ''
-              $.get 'templates/' + container[1] + '.html', (html) ->
+                if module.position == 'top'
+                  $('#' + module.parentID).prepend('<div id="' + id + '-pre"></div>')
+                else
+                  $('#' + module.parentID).append('<div id="' + id + '-pre"></div>')
+              $.get 'templates/' + module.template + '.html', (html) ->
                 html = $(html)
+                $(html[0]).attr('id', id)
+                $('#' + id + '-pre').replaceWith(html)
+                $(document).trigger id
+                if module.model != undefined
+                  requirejs ['models/' + module.model], (Model) -> 
+                    dataModel = new Model()
+                    dataModel.display(id, module.dataSource, module.title, uri)
+
+          containers = data.controllers[route].header.containers
+          $.each containers, (id, container) ->
+            $(document).on container[0], ()->
+              $(this).unbind container[0], arguments.callee
+              if $('#' + id).length > 0
+                $('#' + id).replaceWith('<div id="' + id + '-pre"></div>')
+              else
+                if (container[2] == 'top')
+                  $('#' + container[0]).prepend('<div id="' + id + '-pre"></div>')
+                else
+                  $('#' + container[0]).append('<div id="' + id + '-pre"></div>')
+              if container[1] != undefined && container[1] != ''
+                $.get 'templates/' + container[1] + '.html', (html) ->
+                  html = $(html)
+                  $(html[0]).attr('id', id)
+                  $('#' + id + '-pre').replaceWith(html)
+                  $(document).trigger id
+              else
+                console.log 'in here'
+                html = $('<div></div>')
                 html.attr('id', id)
                 $('#' + id + '-pre').replaceWith(html)
                 $(document).trigger id
-            else
-              console.log 'in here'
-              html = $('<div></div>')
-              html.attr('id', id)
-              $('#' + id + '-pre').replaceWith(html)
-              $(document).trigger id
-          $(document).trigger 'header'
+            $(document).trigger 'header'
+      catch err
+        console.log err
       try
         modules = data.controllers[route].footer.modules
         $.each modules, (id, module) ->
@@ -77,7 +80,7 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
                 $('#' + module.parentID).append('<div id="' + id + '-pre"></div>')
             $.get 'templates/' + module.template + '.html', (html) ->
               html = $(html)
-              html.attr('id', id)
+              $(html[0]).attr('id', id)
               $('#' + id + '-pre').replaceWith(html)
               $(document).trigger id
               if module.model != undefined
@@ -99,7 +102,7 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
             if container[1] != undefined && container[1] != ''
               $.get 'templates/' + container[1] + '.html', (html) ->
                 html = $(html)
-                html.attr('id', id)
+                $(html[0]).attr('id', id)
                 $('#' + id + '-pre').replaceWith(html)
                 $(document).trigger id
             else
@@ -125,7 +128,7 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
                 $('#' + module.parentID).append('<div id="' + id + '-pre"></div>')
             $.get 'templates/' + module.template + '.html', (html) ->
               html = $(html)
-              html.attr('id', id)
+              $(html[0]).attr('id', id)
               $('#' + id + '-pre').replaceWith(html)
               $(document).trigger id
               if module.model != undefined
@@ -147,7 +150,7 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
             if container[1] != undefined && container[1] != ''
               $.get 'templates/' + container[1] + '.html', (html) ->
                 html = $(html)
-                html.attr('id', id)
+                $(html[0]).attr('id', id)
                 $('#' + id + '-pre').replaceWith(html)
                 $(document).trigger id
             else
@@ -176,7 +179,7 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
             $('#' + module.parentID).append('<div id="' + id + '-pre"></div>')
           $.get 'templates/' + module.template + '.html', (html) ->
             html = $(html)
-            html.attr('id', id)
+            $(html[0]).attr('id', id)
             $('#' + id + '-pre').replaceWith(html)
             $(document).trigger id
             if module.model != undefined
@@ -195,7 +198,7 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
           if container[1] != undefined && container[1] != ''
             $.get 'templates/' + container[1] + '.html', (html) ->
               html = $(html)
-              html.attr('id', id)
+              $(html[0]).attr('id', id)
               $('#' + id + '-pre').replaceWith(html)
               $(document).trigger id
           else
@@ -224,7 +227,7 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
             $('#' + module.parentID).append('<div id="' + id + '-pre"></div>')
           $.get 'templates/' + module.template + '.html', (html) ->
             html = $(html)
-            html.attr('id', id)
+            $(html[0]).attr('id', id)
             $('#' + id + '-pre').replaceWith(html)
             $(document).trigger id
             if module.model != undefined
@@ -241,12 +244,12 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
           if container[1] != undefined && container[1] != ''
             $.get 'templates/' + container[1] + '.html', (html) ->
               html = $(html)
-              html.attr('id', id)
+              $(html[0]).attr('id', id)
               $('#' + id + '-pre').replaceWith(html)
               $(document).trigger id
           else
             html = $('<div></div>')
-            html.attr('id', id)
+            $(html[0]).attr('id', id)
             $('#' + id + '-pre').replaceWith(html)
             $(document).trigger id
         $(document).trigger 'container'
@@ -267,7 +270,7 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
             $('#' + module.parentID).append('<div id="' + id + '-pre"></div>')
           $.get 'templates/' + module.template + '.html', (html) ->
             html = $(html)
-            html.attr('id', id)
+            $(html[0]).attr('id', id)
             $('#' + id + '-pre').replaceWith(html)
             $(document).trigger id
             if module.model != undefined
@@ -284,7 +287,7 @@ require ['backbone', 'uri/URI', 'models/namespace'], (Backbone, URI, namespace) 
           if container[1] != undefined && container[1] != ''
             $.get 'templates/' + container[1] + '.html', (html) ->
               html = $(html)
-              html.attr('id', id)
+              $(html[0]).attr('id', id)
               $('#' + id + '-pre').replaceWith(html)
               $(document).trigger id
           else
