@@ -16,8 +16,9 @@ define(['models/BaseModel'], function(BaseModel) {
       return console.log('it worked!');
     };
 
-    TestModel.prototype.route = function() {
-      return console.log('in route');
+    TestModel.prototype.route = function(id, url, title, actions) {
+      console.log('in route');
+      return console.log(actions);
     };
 
     return TestModel;
