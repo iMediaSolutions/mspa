@@ -15,6 +15,7 @@ define ['models/namespace'],(namespace) ->
       this.dHFS(route, 'footer')
       this.dHFS(route, 'sidebar')
     dHFS: (route, loc) ->
+      data = namespace.data
       try
         modules = data.controllers[route][loc].modules
         if modules != undefined
