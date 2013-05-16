@@ -99,17 +99,25 @@ define(['models/namespace'], function(namespace) {
     };
 
     mSpa.prototype.route = function(route, action, actions) {
-      var containers, data, modules;
+      var containers, data, modules, reroute;
 
       if (route === void 0 || route === null) {
         route = 'default';
         action = 'default';
       }
+      console.log(route);
+      data = namespace.data;
+      if (route === 'default' && action === 'default') {
+        reroute = data.controllers[route].views[action].reroute;
+        console.log(reroute);
+        if (reroute !== void 0 || route !== null) {
+          window.location = '/#/' + reroute.route + '/' + reroute.action;
+        }
+      }
       if (namespace.lastTemplate !== route) {
         this.displayHeaderFooterSidebar(route);
         namespace.lastTemplate = route;
       }
-      data = namespace.data;
       modules = data.controllers[route].views[action].modules;
       $('#container').html('');
       $.each(modules, function(id, module) {

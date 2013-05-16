@@ -1,38 +1,62 @@
-{"controllers": {
-  "default" : {
-    "views" : {
-      "default" : {
-        "containers" : {
-          "container-1" : ["container","l-one-column"],
-          "container-2" : ["container","l-one-column"],
-          "container-3" : ["container","l-one-column"],
-          "container-4" : ["container","l-one-column"],
-          "container-5" : ["container","l-one-column"],
-          "container-6" : ["container","l-one-column"]
-
-        },
-        "modules" : {
-          "m-test-1" : {"parentID" : "container-1", "template" : "test", "model" : "TestModel"},
-          "m-test-2" : {"parentID" : "container-1", "template" : "test"},
-          "m-test-3" : {"parentID" : "container-2", "template" : "heavytest", "model" : "TestModel"},
-          "m-test-4" : {"parentID" : "container-1", "template" : "test", "model" : "TestModel"},
-          "m-test-5" : {"parentID" : "container-1", "template" : "test", "model" : "TestModel"},
-          "m-test-6" : {"parentID" : "container-3", "template" : "heavytest"},
-          "m-test-7" : {"parentID" : "container-1", "template" : "test"},
-          "m-test-8" : {"parentID" : "container-1", "template" : "test"}
+{
+  "controllers":
+  {
+    "default" :
+    {
+      "views" :
+      {
+        "default" :
+        {
+          "reroute" :
+          {
+            "route" : "main",
+            "action" : "index"
+          }
         }
-      },
-      "default2" : {
-        "containers" : {
-          "container-1" : ["container","l-one-column"],
-          "container-2" : ["container","l-one-column"],
-          "container-3" : ["container","l-one-column"]
+      }
+    },
+    "main" :
+    {
+      "views" :
+      {
+        "index" :
+        {
+          "containers" :
+          {
+            "container-1" : ["container","l-one-column"],
+            "container-2" : ["container","l-one-column"],
+            "container-3" : ["container","l-one-column"],
+            "container-4" : ["container","l-one-column"],
+            "container-5" : ["container","l-one-column"],
+            "container-6" : ["container","l-one-column"]
+          },
+          "modules" :
+          {
+            "m-test-1" : {"parentID" : "container-1", "template" : "test", "model" : "TestModel"},
+            "m-test-2" : {"parentID" : "container-1", "template" : "test"},
+            "m-test-3" : {"parentID" : "container-2", "template" : "heavytest", "model" : "TestModel"},
+            "m-test-4" : {"parentID" : "container-1", "template" : "test", "model" : "TestModel"},
+            "m-test-5" : {"parentID" : "container-1", "template" : "test", "model" : "TestModel"},
+            "m-test-6" : {"parentID" : "container-3", "template" : "heavytest"},
+            "m-test-7" : {"parentID" : "container-1", "template" : "test"},
+            "m-test-8" : {"parentID" : "container-1", "template" : "test"}
+          }
         },
-        "modules" : {
-          "m-test-1" : {"parentID" : "container-1", "template" : "test"},
-          "m-test-2" : {"parentID" : "container-2", "template" : "test"}
+        "default2" :
+        {
+          "containers" :
+          {
+            "container-1" : ["container","l-one-column"],
+            "container-2" : ["container","l-one-column"],
+            "container-3" : ["container","l-one-column"]
+          },
+          "modules" :
+          {
+            "m-test-1" : {"parentID" : "container-1", "template" : "test"},
+            "m-test-2" : {"parentID" : "container-2", "template" : "test"}
+          }
         }
       }
     }
   }
-}}
+}

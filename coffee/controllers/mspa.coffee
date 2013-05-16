@@ -69,10 +69,16 @@ define ['models/namespace'],(namespace) ->
       if (route == undefined or route == null)
         route = 'default'
         action = 'default'
+      console.log route
+      data = namespace.data
+      if (route == 'default' && action == 'default')
+        reroute = data.controllers[route].views[action].reroute
+        console.log reroute
+        if (reroute != undefined or route != null)
+          window.location = '/#/' + reroute.route + '/' + reroute.action
       if namespace.lastTemplate != route
         this.displayHeaderFooterSidebar(route)
         namespace.lastTemplate = route
-      data = namespace.data
       modules = data.controllers[route].views[action].modules
       $('#container').html('')
       $.each modules, (id, module) ->
